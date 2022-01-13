@@ -1,3 +1,5 @@
+import psycopg2
+import os
 from flask import Flask, render_template, request
 from mysql.connector import connection
 app = Flask(__name__)
@@ -8,7 +10,8 @@ config['user'] = 'root'
 config['password'] = 'Sandeep007'
 config['database'] = 'badminton_court_booking'
 
-mysql = connection.MySQLConnection(**config)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+mysql = psycopg2.connect(DATABASE_URL)
 
 @app.route('/signup', methods=['POST'])
 def register():
