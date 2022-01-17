@@ -12,6 +12,7 @@ config['database'] = 'badminton_court_booking'
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 mysql = psycopg2.connect(DATABASE_URL)
+mysql.autocommit = True
 
 @app.route('/signup', methods=['POST'])
 def register():
@@ -22,7 +23,7 @@ def register():
     phone = details['phn']
     cur = mysql.cursor()
     cur.execute("INSERT INTO user_details(user_name, email,password,phone) VALUES (%s, %s, %s, %s)", (Name, email, password, phone))
-    mysql.commit()
+    # mysql.commit()
     cur.close()
     return 'success'
 
@@ -50,7 +51,7 @@ def details():
 	bid = details['booking_id']
 	cur = mysql.cursor()
 	cur.execute("INSERT INTO booking_details(user_name,booking_id) VALUES (%s, %s)", (Name,bid))
-	mysql.commit()
+	#mysql.commit()
 	cur.close()
 	return 'success'	
     
