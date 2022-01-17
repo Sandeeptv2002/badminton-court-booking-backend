@@ -43,7 +43,16 @@ def login():
        print("Correct")
        return 'success'
 
-    
+@app.route('/details',methods=['POST'])
+def details():
+	details = request.json
+	Name = details['name']
+	bid = details['booking_id']
+	cur = mysql.cursor()
+	cur.execute("INSERT INTO booking_details(user_name,booking_id) VALUES (%s, %s)", (Name,bid))
+	mysql.commit()
+	cur.close()
+	return 'success'	
     
 
 if __name__ == '__main__':
