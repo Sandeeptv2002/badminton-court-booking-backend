@@ -49,7 +49,7 @@ def details():
 	details = request.json
 	Name = details['name']
 	bid = details['booking_id']
-	timing = details['time']
+	time = details['time']
 	court_type = details['court']
 	cur = mysql.cursor()
 	cur.execute("INSERT INTO booking_details(user_name,booking_id,timing,court_type) VALUES (%s, %s, %s, %s)", (Name,bid,time,court_type))
