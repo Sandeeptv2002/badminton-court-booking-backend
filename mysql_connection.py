@@ -88,7 +88,10 @@ def get_ticket():
        return 'failure', 404
     else:
        print("Correct")
-       return str(myresult)
+       json_data=[]
+       for result in myresult:
+           json_data.append(dict(zip(row_headers,result)))
+       return jsonify(json_data)
 
 if __name__ == '__main__':
     app.run("0.0.0.0")
