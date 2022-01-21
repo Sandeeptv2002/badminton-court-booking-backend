@@ -90,7 +90,7 @@ def get_ticket():
     else:
        print("Correct")
        json_data={}
-       result = myresult[0]:
+       result = myresult[0]
        json_data = dict(zip(row_headers,result))
        return json_data
 
