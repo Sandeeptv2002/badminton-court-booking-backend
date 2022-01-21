@@ -81,6 +81,7 @@ def get_ticket():
     id = details['bid']
     cur = mysql.cursor()
     cur.execute("""SELECT * FROM booking_details where booking_id = '%s'"""%(id))
+    row_headers=[x[0] for x in cur.description]
     myresult = cur.fetchall()
     cur.close()
     if (myresult == []):
