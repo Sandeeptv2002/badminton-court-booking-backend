@@ -1,6 +1,6 @@
 import psycopg2
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from mysql.connector import connection
 app = Flask(__name__)
 
