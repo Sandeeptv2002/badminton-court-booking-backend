@@ -88,7 +88,7 @@ def get_ticket():
        return 'failure', 404
     else:
        print("Correct")
-       return myresult
+       return str(myresult)
 
 if __name__ == '__main__':
     app.run("0.0.0.0")
