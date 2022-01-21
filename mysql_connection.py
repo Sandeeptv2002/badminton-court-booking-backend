@@ -56,7 +56,23 @@ def details():
 	#mysql.commit()
 	cur.close()
 	return 'success'	
-    
+
+@app.route('/check', methods=['POST'])
+def check():
+ 
+    details = request.json
+    court = details['court']
+    time = details['time']
+    cur = mysql.cursor()
+    cur.execute("""SELECT * FROM booking_details where timing = '%s' and court_type = '%s' """%(time,court))
+    myresult = cur.fetchall()
+    cur.close()
+    if (myresult == []):
+       print("Court is free")
+       return 'success'
+    else:
+       print("Court booked")
+       return 'failure', 404
 
 if __name__ == '__main__':
     app.run("0.0.0.0")
