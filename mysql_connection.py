@@ -74,5 +74,21 @@ def check():
        print("Court booked")
        return 'failure', 404
 
+@app.route('/get_ticket', methods=['POST'])
+def get_ticket():
+ 
+    details = request.json
+    id = details['bid']
+    cur = mysql.cursor()
+    cur.execute("""SELECT * FROM booking_details where booking_id = '%s'"""%(id))
+    myresult = cur.fetchall()
+    cur.close()
+    if (myresult == []):
+       print("Wrong booking id")
+       return 'failure', 404
+    else:
+       print("Correct")
+       return myresult
+
 if __name__ == '__main__':
     app.run("0.0.0.0")
