@@ -52,8 +52,8 @@ def details():
 	Name = details['name']
 	bid = details['booking_id']
 	time = details['time']
-	#print(time)
 	end_time = time[10:18:1]
+    print(end_time)
 	if end_time[-2:] == "AM" and end_time[:2] == "12":
     		new_time = "00" + end_time[2:-2]
 	elif end_time[-2:] == "AM":
