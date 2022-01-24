@@ -52,25 +52,10 @@ def details():
     Name = details['name']
     bid = details['booking_id']
     time = details['time']
-    end_time = time[10:18:1]
-    print(end_time)
-    if end_time[-2:] == "AM" and end_time[:2] == "12":
-            new_time = "00" + end_time[2:-2]
-    elif end_time[-2:] == "AM":
-        new_time = end_time[:-2]  
-    elif end_time[-2:] == "PM" and end_time[:2] == "12":
-        new_time = end_time[:-2]
-    else:
-        new_time = str(int(end_time[:2]) + 12) + end_time[2:8]
-    print(new_time)
-    tom_date = datetime.datetime.now() + datetime.timedelta(1)
-    date_time = datetime.datetime(tom_date.year, tom_date.month, tom_date.day, int(new_time[:2]), 0)
-    booked_timestamp = t.mktime(date_time.timetuple());
-    print(booked_timestamp)
     court_type = details['court']
     cur = mysql.cursor()
     date = int(t.time())
-    cur.execute("INSERT INTO booking_details(user_name,booking_id,timing,court_type,end_time_stamp) VALUES (%s, %s, %s, %s, %s)", (Name,bid,time,court_type,booked_timestamp))
+    cur.execute("INSERT INTO booking_details(user_name,booking_id,timing,court_type) VALUES (%s, %s, %s, %s)", (Name,bid,time,court_type))
     #mysql.commit()
     cur.close()
     return 'success'    
