@@ -4,7 +4,6 @@ import datetime
 import os
 from flask import Flask, render_template, request, jsonify
 from mysql.connector import connection
-from datetime import datetime
 app = Flask(__name__)
 
 config = {}
