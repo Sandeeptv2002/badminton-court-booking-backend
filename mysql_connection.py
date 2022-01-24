@@ -54,7 +54,7 @@ def details():
 	time = details['time']
 	end_time = time[10:18:1]
 	if end_time[-2:] == "AM" and end_time[:2] == "12":
-		new_time = "00" + end_time[2:-2]
+    		new_time = "00" + end_time[2:-2]
 	elif end_time[-2:] == "AM":
 		new_time = end_time[:-2]  
 	elif end_time[-2:] == "PM" and end_time[:2] == "12":
@@ -63,8 +63,9 @@ def details():
 		new_time = str(int(end_time[:2]) + 12) + end_time[2:8]
 	print(new_time)
 	tom_date = datetime.datetime.now() + datetime.timedelta(1)
-	date_time = datetime.datetime(int(tom_date.year), int(tom_date.month), int(tom_date.day), int(new_time[:2]), 0)
+	date_time = datetime.datetime(tom_date.year, tom_date.month, tom_date.day, int(new_time[:2]), 0)
 	booked_timestamp = t.mktime(date_time.timetuple());
+	print(booked_timestamp)
 	court_type = details['court']
 	cur = mysql.cursor()
 	date = int(t.time())
