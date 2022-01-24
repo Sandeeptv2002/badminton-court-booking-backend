@@ -1,5 +1,5 @@
 import psycopg2
-import time
+import time as t
 import os
 from flask import Flask, render_template, request, jsonify
 from mysql.connector import connection
@@ -54,7 +54,7 @@ def details():
 	time = details['time']
 	court_type = details['court']
 	cur = mysql.cursor()
-	date = int(time.time())
+	date = int(t.time())
 	cur.execute("INSERT INTO booking_details(user_name,booking_id,timing,court_type,date) VALUES (%s, %s, %s, %s, %s)", (Name,bid,time,court_type,date))
 	#mysql.commit()
 	cur.close()
