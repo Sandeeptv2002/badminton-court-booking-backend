@@ -52,7 +52,7 @@ def details():
 	time = details['time']
 	court_type = details['court']
 	cur = mysql.cursor()
-	cur.execute("SELECT SYSDATE()")
+	cur.execute("SELECT CURDATE()+0")
 	date = cur.fetchall()
 	print(date)
 	cur.execute("INSERT INTO booking_details(user_name,booking_id,timing,court_type) VALUES (%s, %s, %s, %s)", (Name,bid,time,court_type))
