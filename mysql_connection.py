@@ -1,7 +1,9 @@
 import psycopg2
+import time
 import os
 from flask import Flask, render_template, request, jsonify
 from mysql.connector import connection
+from datetime import datetime
 app = Flask(__name__)
 
 config = {}
@@ -52,10 +54,8 @@ def details():
 	time = details['time']
 	court_type = details['court']
 	cur = mysql.cursor()
-	cur.execute("SELECT CURDATE()+0")
-	date = cur.fetchall()
-	print(date)
-	cur.execute("INSERT INTO booking_details(user_name,booking_id,timing,court_type) VALUES (%s, %s, %s, %s)", (Name,bid,time,court_type))
+	date = int(time.time())
+	cur.execute("INSERT INTO booking_details(user_name,booking_id,timing,court_type,date) VALUES (%s, %s, %s, %s, %s)", (Name,bid,time,court_type,date))
 	#mysql.commit()
 	cur.close()
 	return 'success'	
